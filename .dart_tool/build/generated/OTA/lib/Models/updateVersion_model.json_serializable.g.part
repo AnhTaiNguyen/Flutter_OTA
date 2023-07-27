@@ -1,0 +1,63 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UpdateVersion _$UpdateVersionFromJson(Map<String, dynamic> json) =>
+    UpdateVersion(
+      config: json['config'] == null
+          ? null
+          : Config.fromJson(json['config'] as Map<String, dynamic>),
+      links: json['links'] == null
+          ? null
+          : Links.fromJson(json['links'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$UpdateVersionToJson(UpdateVersion instance) =>
+    <String, dynamic>{
+      'config': instance.config,
+      'links': instance.links,
+    };
+
+Config _$ConfigFromJson(Map<String, dynamic> json) => Config(
+      polling: json['polling'] == null
+          ? null
+          : Polling.fromJson(json['polling'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ConfigToJson(Config instance) => <String, dynamic>{
+      'polling': instance.polling,
+    };
+
+Polling _$PollingFromJson(Map<String, dynamic> json) => Polling(
+      sleep: json['sleep'] as String?,
+    );
+
+Map<String, dynamic> _$PollingToJson(Polling instance) => <String, dynamic>{
+      'sleep': instance.sleep,
+    };
+
+Links _$LinksFromJson(Map<String, dynamic> json) => Links(
+      deploymentBase: json['deploymentBase'] == null
+          ? null
+          : Actions.fromJson(json['deploymentBase'] as Map<String, dynamic>),
+      installedBase: json['installedBase'] == null
+          ? null
+          : Actions.fromJson(json['installedBase'] as Map<String, dynamic>),
+      configData: json['configData'] == null
+          ? null
+          : Actions.fromJson(json['configData'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LinksToJson(Links instance) => <String, dynamic>{
+      'deploymentBase': instance.deploymentBase,
+      'installedBase': instance.installedBase,
+      'configData': instance.configData,
+    };
+
+Actions _$ActionsFromJson(Map<String, dynamic> json) => Actions(
+      href: json['href'] as String?,
+    );
+
+Map<String, dynamic> _$ActionsToJson(Actions instance) => <String, dynamic>{
+      'href': instance.href,
+    };

@@ -1,0 +1,7 @@
+{
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "dart.debugExternalLibraries": true,
+  "dart.debugSdkLibraries": true,
+  "git.enabled": true
+
+}
