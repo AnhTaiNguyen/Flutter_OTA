@@ -1,0 +1,43 @@
+{
+    "car": [
+        {
+            "id": "HYUNDAI_SANTA_FE_0_0",
+            "name": "HYUNDAI SANTA FE",
+            "description": [
+                {
+                    "number": "Demo 1",
+                    "market": "Viet Nam",
+                    "CurrVersion": "2022",
+                    "dateUpdate": "2022-08-13",
+                    "newVer": "true"
+                }
+            ]
+        },
+        {
+            "id": "KIA_K3_0_0",
+            "name": "KIA K3",
+            "description": [
+                {
+                    "number": "Demo 2",
+                    "market": "USA",
+                    "CurrVersion": "2020",
+                    "dateUpdate": "2020-08-13",
+                    "newVer": "true"
+                }
+            ]
+        },
+        {
+            "id": "AUDI_0_0",
+            "name": "AUDI",
+            "description": [
+                {
+                    "number": "Demo 3",
+                    "market": "GERMANY",
+                    "CurrVersion": "2021",
+                    "dateUpdate": "2021-02-13",
+                    "newVer": "false"
+                }
+            ]
+        }
+    ]
+}

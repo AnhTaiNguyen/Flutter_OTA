@@ -4,41 +4,7 @@
             "outputFile": "com.example.firebase_signin.app-mergeDebugResources-14:/values-lt/values-lt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\22c1657e8e50021e90b7485800683045\\transformed\\core-1.6.0\\res\\values-lt\\values-lt.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "24",
-                        "startColumns": "4",
-                        "startOffsets": "2751",
-                        "endColumns": "100",
-                        "endOffsets": "2847"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\c1aec7412308b3e9a24f484005499f4d\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-lt\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "154",
-                        "endOffsets": "349"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1061",
-                        "endColumns": "158",
-                        "endOffsets": "1215"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\a4749f66b47367e50f6b953467c47698\\transformed\\jetified-play-services-base-18.1.0\\res\\values-lt\\values.xml",
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\d95a8ed2bcd00480838c48020097b14d\\transformed\\jetified-play-services-base-18.1.0\\res\\values-lt\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\2ce61808d8c1e850c577a69c1375962d\\transformed\\browser-1.4.0\\res\\values-lt\\values-lt.xml",
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\fff36187a4eda29d35bffc434cb5e57f\\transformed\\browser-1.4.0\\res\\values-lt\\values-lt.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -69,6 +35,40 @@
                         "startOffsets": "2321,2426,2531,2645",
                         "endColumns": "104,104,113,105",
                         "endOffsets": "2421,2526,2640,2746"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\efdfb83ce7aac554f52bb375efc3b106\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-lt\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "154",
+                        "endOffsets": "349"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1061",
+                        "endColumns": "158",
+                        "endOffsets": "1215"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\5e7243bd57fe5ab63fa5de7feca8007a\\transformed\\core-1.6.0\\res\\values-lt\\values-lt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "24",
+                        "startColumns": "4",
+                        "startOffsets": "2751",
+                        "endColumns": "100",
+                        "endOffsets": "2847"
                     }
                 }
             ]

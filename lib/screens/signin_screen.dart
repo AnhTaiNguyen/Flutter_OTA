@@ -81,18 +81,30 @@ class _SignInScreenState extends State<SignInScreen> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-            gradient: LinearGradient(colors: [
-          hexStringToColor("#eceeae"),
-          hexStringToColor("#94bbe9"),
-          hexStringToColor("5E61F4")
-        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [
+                0.1,
+                0.4,
+                0.6,
+                0.9,
+              ],
+              colors: [
+                Colors.yellow,
+                Colors.red,
+                Colors.indigo,
+                Colors.teal,
+              ],
+            )
+          ),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/hcmutlogo.png"),
+                logoWidget("assets/images/boschlogo.png"),
                 const SizedBox(
                   height: 20,
                 ),

@@ -4,14 +4,14 @@
             "outputFile": "com.example.firebase_signin.app-mergeDebugResources-14:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Asus\\Desktop\\DO_AN_LOC\\OTA\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\Asus\\Documents\\GitHub\\Flutter_OTA\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",
-                        "startOffsets": "175,831",
+                        "startOffsets": "175,829",
                         "endLines": "7,16",
                         "endColumns": "12,12",
-                        "endOffsets": "482,997"
+                        "endOffsets": "471,995"
                     },
                     "to": {
                         "startLines": "2,6",

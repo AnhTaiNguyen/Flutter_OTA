@@ -5,7 +5,7 @@ Image logoWidget(String imageName) {
     imageName,
     fit: BoxFit.fill,
     width: 240,
-    height: 240,
+    height: 100,
     // color: Colors.white,
   );
 }
@@ -41,12 +41,12 @@ class CarWidget extends StatelessWidget {
     await Future.delayed(Duration(seconds: 1));
 
     // Map the vehicleNameOnScreen to the corresponding image path
-    if (vehicleNameOnScreen.contains('Hyundai Santa Fe _0')) {
+    if (vehicleNameOnScreen.contains('HYUNDAI SANTA FE')) {
       return 'assets/images/hyundai.png';
-    } else if (vehicleNameOnScreen.toLowerCase().contains('kia k3')) {
+    } else if (vehicleNameOnScreen.toLowerCase().contains('KIA K3')) {
       return 'assets/images/kia_k3.png';
-    } else if (vehicleNameOnScreen.contains('Hyundai Santa Fe _1')) {
-      return 'assets/images/hyundaiSantaFe1.png';
+    } else if (vehicleNameOnScreen.contains('AUDI')) {
+      return 'assets/images/audi.png';
     }
     // If no match is found, return a default image path
     return '';

@@ -1,15 +1,18 @@
+import 'dart:convert';
+
+import 'package:OTA/screens/vehicle_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'package:OTA/reusable_widgets/reusable_widget.dart';
-import 'package:OTA/screens/diagnostic_screen.dart';
-import 'package:OTA/screens/update_screen.dart';
-import 'package:OTA/screens/vehicel_screen.dart';
-import 'package:OTA/Models/user_model.dart';
+import '../reusable_widgets/reusable_widget.dart';
+import '../screens/diagnostic_screen.dart';
+import '../screens/update_screen.dart';
+import '../Models/user_model.dart';
 
-import '../Models/NetworkHandler.dart';
+
 import '../reusable_widgets/yesCancelDialog.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,30 +26,82 @@ class HomeScreen extends StatefulWidget {
 const imglogo12 = "assets/images/boschsymbol.svg";
 const imgTabbar = "assets/images/supergraphic.svg";
 
-class VehicleInfo {
-  final String vehicleName;
-  final String vehicleMarket;
+class CarData {
+  final String id;
+  final String name;
+  final String market;
+  final String currVersion;
+  final String dateUpdate;
+  final bool isNewVersionAvailable;
 
-  VehicleInfo({
-    required this.vehicleName,
-    required this.vehicleMarket,
+  CarData({
+    required this.id,
+    required this.name,
+    required this.market,
+    required this.currVersion,
+    required this.dateUpdate,
+    required this.isNewVersionAvailable,
   });
 
-  // Factory method to create a VehicleInfo object from JSON data
-  factory VehicleInfo.fromJson(Map<String, dynamic> json) {
-    return VehicleInfo(
-        vehicleName: json['description'], vehicleMarket: json['name']);
-  }
+  // Factory method to create a CarData object from JSON data
+  factory CarData.fromJson(Map<String, dynamic> json) {
+  return CarData(
+    id: json['id'],
+    name: json['name'],
+    market: json['description'][0]['market'],
+    currVersion: json['description'][0]['CurrVersion'],
+    dateUpdate: json['description'][0]['dateUpdate'],
+    isNewVersionAvailable: json['description'][0]['newVer'] == "true", // Parse as bool
+  );
 }
+
+}
+
 
 class _HomeScreenState extends State<HomeScreen> {
   UserModel? userData;
-  NetworkHandler networkHandler = NetworkHandler();
-  late Future<VehicleInfo> futureVehicleInfo;
   String carId = '';
   String vehicleNameOnScreen = '';
   String vehicleMarket = '';
   bool availableUpdate = false;
+  CarData? _carData; 
+
+  Future<void> fetchCarDataAndCheckMatch(String carId) async {
+    try {
+      final String response = await rootBundle.loadString('assets/data.json');
+      final data = await json.decode(response);
+      final List<dynamic> carList = data["car"];
+
+      // Find the car with the specified carId
+      final carData = carList.firstWhere(
+        (car) => car["id"] == carId,
+        orElse: () => null,
+      );
+
+      if (carData != null) {
+        final carInfo = CarData.fromJson(carData);
+        setState(() {
+          vehicleNameOnScreen = carInfo.name;
+          vehicleMarket = carInfo.market;
+          availableUpdate = carInfo.isNewVersionAvailable;
+          _carData = carInfo; // Store the fetched carData
+        });
+      } else {
+        // Car with matching carId not found
+        // Handle the case when the carId doesn't match any car
+        // For example, show an error message or set default values
+        setState(() {
+          vehicleNameOnScreen = 'N/A';
+          vehicleMarket = 'N/A';
+          availableUpdate = false;
+          _carData = null;
+        });
+      }
+    } catch (e) {
+      // Handle any errors that may occur during data fetching or processing
+      print("Error: $e");
+    }
+  }
 
   @override
   void initState() {
@@ -54,55 +109,26 @@ class _HomeScreenState extends State<HomeScreen> {
     fetchUserData();
   }
 
-  // Fetch Version data from the server
-  void fetchData(String carId) async {
-    var response = await networkHandler.get(
-      "https://device.eu1.bosch-iot-rollouts.com/CF738D39-C92C-49D7-A751-CDBEA75BDCD8/controller/v1/$carId",
-    );
-    if (response is Map<String, dynamic> &&
-        response['_links'].containsKey('deploymentBase')) {
-      setState(() {
-        availableUpdate = true;
-      });
-    } else {
-      setState(() {
-        availableUpdate = false;
-      });
-    }
-  }
-
-  // Fetch vehicle information from the server
-  Future<VehicleInfo> fetchVehicleInfo(String carId) async {
-    var response = await networkHandler.getVehicleInfo(
-      "https://api.eu1.bosch-iot-rollouts.com/rest/v1/targets/$carId",
-    );
-    setState(() => vehicleNameOnScreen = response['description']);
-    vehicleMarket = response['name'];
-    return VehicleInfo.fromJson(response);
-  }
-
-  // Get carId from the user info
   void fetchUserData() async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      final snapshot = await FirebaseFirestore.instance
-          .collection('user_info')
-          .where('email', isEqualTo: user.email)
-          .limit(1)
-          .get();
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    final snapshot = await FirebaseFirestore.instance
+        .collection('user_info')
+        .where('email', isEqualTo: user.email)
+        .limit(1)
+        .get();
 
-      if (snapshot.docs.isNotEmpty) {
-        final userDataFromSnapshot =
-            UserModel.fromSnapshot(snapshot.docs.first);
-        setState(() {
-          userData = userDataFromSnapshot;
-        });
-        this.carId = userDataFromSnapshot.carId;
-        fetchVehicleInfo(carId);
-        fetchData(carId);
-      }
+    if (snapshot.docs.isNotEmpty) {
+      final userDataFromSnapshot = UserModel.fromSnapshot(snapshot.docs.first);
+      setState(() {
+        userData = userDataFromSnapshot;
+      });
+      final carId = userDataFromSnapshot.carId;
+      fetchCarDataAndCheckMatch(carId);
     }
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -150,21 +176,21 @@ class _HomeScreenState extends State<HomeScreen> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           color: Colors.white,
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-              child: Column(
-                children: [
-                  Text(
-                    '${vehicleNameOnScreen}',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
+           child: Container(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
+            child: Column(
+              children: [
+                Text(
+                  '${vehicleNameOnScreen}',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
                   ),
-                  CarWidget(vehicleMarket),
-                  const SizedBox(
+                ),
+                CarWidget(vehicleNameOnScreen),
+                  SizedBox(
                     height: 50,
                   ),
                   ElevatedButton(
@@ -172,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => vehicleScreen(),
+                          builder: (context) => vehicleScreen(carData: _carData!),
                         ),
                       );
                     },
@@ -208,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => UpdateScreen(),
+                          builder: (context) => UpdateScreen(carData: _carData!)
                           // availableUpdate: isNewVersionAvailable),
                         ),
                       );

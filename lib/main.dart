@@ -1,7 +1,7 @@
 import 'package:OTA/screens/home_screen.dart';
 import 'package:OTA/screens/signup_screen.dart';
 import 'package:OTA/screens/update_screen.dart';
-import 'package:OTA/screens/vehicel_screen.dart';
+import 'package:OTA/screens/vehicle_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:OTA/screens/signin_screen.dart';
 import 'package:flutter/material.dart';

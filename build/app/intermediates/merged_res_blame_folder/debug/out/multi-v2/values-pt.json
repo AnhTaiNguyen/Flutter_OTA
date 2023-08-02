@@ -4,7 +4,17 @@
             "outputFile": "com.example.firebase_signin.app-mergeDebugResources-14:/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\22c1657e8e50021e90b7485800683045\\transformed\\core-1.6.0\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\fff36187a4eda29d35bffc434cb5e57f\\transformed\\browser-1.4.0\\res\\values-pt\\values-pt.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,170,269,381",
+                        "endColumns": "114,98,111,105",
+                        "endOffsets": "165,264,376,482"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\5e7243bd57fe5ab63fa5de7feca8007a\\transformed\\core-1.6.0\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -18,16 +28,6 @@
                         "startOffsets": "487",
                         "endColumns": "100",
                         "endOffsets": "583"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Asus\\.gradle\\caches\\transforms-3\\2ce61808d8c1e850c577a69c1375962d\\transformed\\browser-1.4.0\\res\\values-pt\\values-pt.xml",
-                    "from": {
-                        "startLines": "2,3,4,5",
-                        "startColumns": "4,4,4,4",
-                        "startOffsets": "55,170,269,381",
-                        "endColumns": "114,98,111,105",
-                        "endOffsets": "165,264,376,482"
                     }
                 }
             ]
